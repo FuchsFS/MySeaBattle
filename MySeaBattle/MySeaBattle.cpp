@@ -18,6 +18,11 @@ HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
 char s1[1251];
 
+/// <summary>
+/// Set cursor position
+/// </summary>
+/// <param name="X"></param>
+/// <param name="Y"></param>
 void GotoXY(int X, int Y)
 {
     COORD coord = { X, Y };
