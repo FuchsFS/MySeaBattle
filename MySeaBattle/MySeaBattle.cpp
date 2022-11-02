@@ -29,6 +29,9 @@ void GotoXY(int X, int Y)
     SetConsoleCursorPosition(hStdOut, coord);
 }
 
+/// <summary>
+/// Main menu
+/// </summary>
 void menu()
 {
 
