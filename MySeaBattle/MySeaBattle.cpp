@@ -18,20 +18,21 @@ HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
 char s1[1251];
 
-/// <summary>
-/// Set cursor position
-/// </summary>
-/// <param name="X"></param>
-/// <param name="Y"></param>
-void GotoXY(int X, int Y)
+enum  ConsoleColor {
+
+    GRAY = 8, BLUE, GREEN,
+    TEAL, RED, PINK,
+    YELLOW, WHITE,
+
+    BLACK = 0, BLUE_FADE, GREEN_FADE,
+    TEAL_FADE, RED_FADE, PINK_FADE,
+    YELLOW_FADE, WHITE_FADE,
+};
+void SetColor(ConsoleColor text, ConsoleColor background)
 {
-    COORD coord = { X, Y };
-    SetConsoleCursorPosition(hStdOut, coord);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (short)text | ((short)background << 4));
 }
 
-/// <summary>
-/// Main menu
-/// </summary>
 void menu()
 {
 
@@ -52,11 +53,11 @@ void menu()
             }
         }
         cout << endl;
-    } // *ffff
+    } // 
 
-    GotoXY(27, 12);
+    SetColor(BLACK, BLUE);
     cout << "\t\t\t--> Нова гра <--";
-    GotoXY(30, 13);
+    SetColor(BLACK, BLUE);
     cout << "\t\t\t       Вихід    ";
     cout << "\n\n\t\t« Морський бій » — гра для двох учасників, у якій гравці по черзі називають координати на невідомій карті суперника. Якщо у суперника за цими координатами є корабель (координати зайняті), то корабель або його частина «топиться», а той, хто потрапив, отримує право зробити ще один хід";
     do
@@ -73,23 +74,23 @@ void menu()
             f = f * (-1);
             if (f == 1)
             {
-                GotoXY(27, 12);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t--> Нова гра <--";
-                GotoXY(30, 13);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t       Вихід   ";
             }
             else if (f == 2)
             {
-                GotoXY(27, 12);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t    Нова гра    ";
-                GotoXY(30, 13);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t       Вихід    ";
             }
             else
             {
-                GotoXY(27, 12);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t    Нова гра      ";
-                GotoXY(30, 13);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t   --> Вихід <--";
             }
         }
@@ -98,23 +99,23 @@ void menu()
             f = f * (-1);
             if (f == 1)
             {
-                GotoXY(27, 12);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t--> Нова гра <--";
-                GotoXY(30, 13);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t      Вихід   ";
             }
             else if (f == 2)
             {
-                GotoXY(27, 12);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t    Нова гра   ";
-                GotoXY(30, 13);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t       Вихід    ";
             }
             else
             {
-                GotoXY(27, 12);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t    Нова гра   ";
-                GotoXY(30, 13);
+                SetColor(BLACK, BLUE);
                 cout << "\t\t\t   --> Вихід <--";
             }
         }
@@ -194,46 +195,46 @@ void win()
     {
         if (x <= 1)
         {
-            system("Color 05");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << "\n\n\n\n\n\n\n\t\t\t\t\t\t\tП";
-            system("Color 15");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " о";
-            system("Color 25");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " з";
-            system("Color 35");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " д";
-            system("Color 48");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " р";
-            system("Color 65");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " а";
-            system("Color 85");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " в";
-            system("Color 93");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " л";
-            system("Color A5");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " я";
-            system("Color B5");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " е";
-            system("Color C0");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " м";
-            system("Color E5");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << "\n\n\t\t\t\t\t\t\t\tВ";
-            system("Color F5");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " а";
-            system("Color 75");
+            SetColor(RED, BLACK);
             Sleep(200);
             cout << " с";
             Sleep(200);
@@ -397,6 +398,8 @@ int main()
                 break;
             }
         }
+
+
     } // *
 
     tableShow();
